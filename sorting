@@ -1,0 +1,115 @@
+#include <stdio.h>
+
+void read_array(int n, int a[]) {
+    int i;
+    printf("Enter the elements in the array ");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+}
+
+void print_array(int n, int a[]) {
+    int i;
+    printf("\n\tThe array is\n");
+    for (i = 0; i < n; i++) {
+        printf("%d\t", a[i]);
+    }
+}
+
+int bubble_sort(int n, int a[]) {
+    int i, j, temp, count = 0;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - 1 - i; j++) {
+            if (a[j] > a[j+1]) {
+                temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+int find_min(int n, int a[], int i) {
+    int j, min, loc_min = i;
+    min = a[i];
+    for (j = i + 1; j < n; j++) {
+        if (a[j] < min) {
+            min = a[j];
+            loc_min = j;
+        }
+    }
+    return loc_min;
+}
+
+int selection_sort(int n, int a[]) {
+    int i, min_loc, temp, count = 0;
+    for (i = 0; i < n - 1; i++) {
+        min_loc = find_min(n, a, i);
+        if (min_loc != i) {
+            temp = a[i];
+            a[i] = a[min_loc];
+            a[min_loc] = temp;
+            count++;
+        }
+    }
+    return count;
+}
+
+int insertion_sort(int n, int a[]) {
+    int i, j, temp, count = 0;
+    for (i = 1; i < n; i++) {
+        temp = a[i];
+        j = i - 1;
+        while (j >= 0 && a[j] > temp) {
+            a[j+1] = a[j];
+            j = j - 1;
+            count++;
+        }
+        a[j+1] = temp;
+    }
+    return count;
+}
+
+void main() {
+    int n, a[20], choice, count;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    read_array(n, a);
+    printf("Unsorted array: ");
+    print_array(n, a);
+
+    do {
+        printf("\n\nMENU\n1. Bubble Sort\n2. Selection Sort\n3. Insertion Sort\n4. Exit\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                count = bubble_sort(n, a);
+                printf("The count is %d\n", count);
+                printf("Sorted array: ");
+                print_array(n, a);
+                break;
+            case 2:
+                count = selection_sort(n, a);
+                printf("The count is %d\n", count);
+                printf("Sorted array: ");
+                print_array(n, a);
+                break;
+            case 3:
+                count = insertion_sort(n, a);
+                printf("The count is %d\n", count);
+                printf("Sorted array: ");
+                print_array(n, a);
+                break;
+            case 4:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+    } while (choice != 4);
+
+}
