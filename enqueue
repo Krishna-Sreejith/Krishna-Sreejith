@@ -1,28 +1,28 @@
 #include <stdio.h>
 #define MAXSIZE 5
 
-// Global variables
+
 int queue[MAXSIZE];
 int front = -1;
 int rear = -1;
 
-// ------------------- Algorithm: isEmpty() -------------------
+
 int isEmpty() {
-    if (front == -1)   // If queue has no elements
+    if (front == -1)   
         return 1;
     else
         return 0;
 }
 
-// ------------------- Algorithm: isFull() -------------------
+
 int isFull() {
-    if (rear == MAXSIZE - 1)  // If rear reached last index
+    if (rear == MAXSIZE - 1)  
         return 1;
     else
         return 0;
 }
 
-// ------------------- Algorithm: Peek() -------------------
+
 int peek() {
     if (!isEmpty())
         return queue[front];
@@ -32,7 +32,7 @@ int peek() {
     }
 }
 
-// ------------------- Algorithm: Enqueue -------------------
+
 void enqueue(int item) {
     if (isFull()) {
         printf("Queue is full, cannot insert.\n");
@@ -48,7 +48,7 @@ void enqueue(int item) {
     }
 }
 
-// ------------------- Algorithm: Dequeue -------------------
+
 int dequeue() {
     int item;
     if (isEmpty()) {
@@ -66,7 +66,7 @@ int dequeue() {
     }
 }
 
-// ------------------- Display Queue -------------------
+
 void display() {
     if (isEmpty()) {
         printf("Queue is empty.\n");
@@ -79,7 +79,7 @@ void display() {
     }
 }
 
-// ------------------- Main Program -------------------
+
 int main() {
     int choice, item;
 
